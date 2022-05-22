@@ -11,6 +11,11 @@ const express=require('express'),
             credentials:true
           }
       });
+      app.get('/',(req,res)=>{
+          res.json({
+              success: true
+          });
+      })
       io.on('connection',socket=>{
         socket.on('join-room',room=>{
           console.log(room);
