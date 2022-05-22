@@ -17,16 +17,13 @@ const express=require('express'),
           });
       })
       io.on('connection',socket=>{
-        socket.on('join-room',room=>{
-          console.log(room);
-          socket.join(room);
+        socket.on('join-room',payload=>{
+          console.log(payload.roomId);
+          socket.join(payload.roomId);
         });
-        //   socket.on('chat',payload=>{
-        //       socket.to(payload.room).emit('chat',payload.message);
-        //   });
-        //   socket.on('cut_call',payload=>{
-        //     socket.to(payload.room).emit('cut_call',payload);
-        //   })
+        socket.on('open-app',payload=>{
+              socket.to(payload.roomId).emit('open-app',payload);
+        });
       });
      
       
